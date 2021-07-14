@@ -267,6 +267,9 @@ public class SpringApplication {
 	}
 
 	/**
+	 *
+	 * 创建一个新的SpringApplication实例也就是要new SpringApplication(),并且定义主要的类作为Bean的加载来源
+	 *
 	 * Create a new {@link SpringApplication} instance. The application context will load
 	 * beans from the specified primary sources (see {@link SpringApplication class-level}
 	 * documentation for details. The instance can be customized before calling
@@ -280,7 +283,9 @@ public class SpringApplication {
 	public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
 		this.resourceLoader = resourceLoader;
 		Assert.notNull(primarySources, "PrimarySources must not be null");
+		// 设置类入口，也就是启动类
 		this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+		// 设置应用类型
 		this.webApplicationType = WebApplicationType.deduceFromClasspath();
 		this.bootstrapRegistryInitializers = getBootstrapRegistryInitializersFromSpringFactories();
 		setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));
